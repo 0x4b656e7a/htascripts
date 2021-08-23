@@ -1,0 +1,99 @@
+<html>
+<SCRIPT LANGUAGE="VBScript">
+    Sub Information
+	On Error Resume Next
+       Set colItems = GetObject("winmgmts:\root\CIMV2").ExecQuery("SELECT * FROM Win32_Processor")
+   For Each objItem In colItems
+      a = a & vbCr & "AddressWidth: " & objItem.AddressWidth
+      a = a & vbCr & "Architecture: " & objItem.Architecture
+      a = a & vbCr & "Availability: " & objItem.Availability
+      a = a & vbCr & "Caption: " & objItem.Caption
+      a = a & vbCr & "ConfigManagerErrorCode: " & objItem.ConfigManagerErrorCode
+      a = a & vbCr & "ConfigManagerUserConfig: " & objItem.ConfigManagerUserConfig
+      a = a & vbCr & "CpuStatus: " & objItem.CpuStatus
+      a = a & vbCr & "CreationClassName: " & objItem.CreationClassName
+      a = a & vbCr & "CurrentClockSpeed: " & objItem.CurrentClockSpeed
+      a = a & vbCr & "CurrentVoltage: " & objItem.CurrentVoltage
+      a = a & vbCr & "DataWidth: " & objItem.DataWidth
+      a = a & vbCr & "Description: " & objItem.Description
+      a = a & vbCr & "DeviceID: " & objItem.DeviceID
+      a = a & vbCr & "ErrorCleared: " & objItem.ErrorCleared
+      a = a & vbCr & "ErrorDescription: " & objItem.ErrorDescription
+      a = a & vbCr & "ExtClock: " & objItem.ExtClock
+      a = a & vbCr & "Family: " & objItem.Family
+      a = a & vbCr & "L2CacheSize: " & objItem.L2CacheSize
+      a = a & vbCr & "L2CacheSpeed: " & objItem.L2CacheSpeed
+      a = a & vbCr & "LastErrorCode: " & objItem.LastErrorCode
+      a = a & vbCr & "Level: " & objItem.Level
+      a = a & vbCr & "LoadPercentage: " & objItem.LoadPercentage
+      a = a & vbCr & "Manufacturer: " & objItem.Manufacturer
+      a = a & vbCr & "MaxClockSpeed: " & objItem.MaxClockSpeed
+      a = a & vbCr & "Name: " & objItem.Name
+      a = a & vbCr & "OtherFamilyDescription: " & objItem.OtherFamilyDescription
+      a = a & vbCr & "PNPDeviceID: " & objItem.PNPDeviceID
+      a = a & vbCr & "PowerManagementCapabilities: " & strPowerManagementCapabilities
+      a = a & vbCr & "PowerManagementSupported: " & objItem.PowerManagementSupported
+      a = a & vbCr & "ProcessorId: " & objItem.ProcessorId
+      a = a & vbCr & "ProcessorType: " & objItem.ProcessorType
+      a = a & vbCr & "Revision: " & objItem.Revision
+      a = a & vbCr & "Role: " & objItem.Role
+      a = a & vbCr & "SocketDesignation: " & objItem.SocketDesignation
+      a = a & vbCr & "Status: " & objItem.Status
+      a = a & vbCr & "StatusInfo: " & objItem.StatusInfo
+      a = a & vbCr & "Stepping: " & objItem.Stepping
+      a = a & vbCr & "SystemCreationClassName: " & objItem.SystemCreationClassName
+      a = a & vbCr & "SystemName: " & objItem.SystemName
+      a = a & vbCr & "UniqueId: " & objItem.UniqueId
+      a = a & vbCr & "UpgradeMethod: " & objItem.UpgradeMethod
+      a = a & vbCr & "Version: " & objItem.Version
+      a = a & vbCr & "VoltageCaps: " & objItem.VoltageCaps
+   Next
+	ScriptArea.Value= a
+    End Sub
+</SCRIPT>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>VB Script + HTML</title>
+	<HTA:APPLICATION ID="MyHTAId" APPLICATIONNAME="MyHTA" BORDER="DIALOG" MAXIMIZEBUTTON="NO" SCROLLFLAT="YES" CAPTION="YES" SELECTION="NO" INNERBORDER="NO" ICON="" SCROLL="NO" SHOWINTASKBAR="YES" SINGLEINSTANCE="YES" SYSMENU="YES" WINDOWSTATE="NORMAL" />
+</head>
+ 
+<script language="javascript">
+	var winWidth=1024;
+	var winHeight = 920;
+	window.resizeTo(winWidth, winHeight);
+	var winPosX=screen.width/2-winWidth/2;
+	var winPosY=screen.height/2-winHeight/2;
+	window.moveTo(winPosX, winPosY);
+</script>
+ 
+<style type="text/css">
+	body{font:14px Tahoma, sans-serif;margin: 13px;line-height: 20px;background: #EDEDED;}
+	.bold{font-weight: bold;}
+	.mark{background: #D0D0E8;padding: 2px 5px;}
+	.header{text-align: center;font-size: 25px;line-height: 40px;font-weight: bold;margin-bottom:20px;}
+	.info{background: #D0D0E8;border-left: 10px solid #00008B;}
+	.private{border: 1px dashed #000;background: #FFFFEF;}
+	.note{height: auto;padding-bottom: 1px;margin: 15px 0;}
+	.note .title{font-weight: bold;text-indent: 10px;height: 25px;line-height: 30px;padding-top: 10px;}
+	.note ul{margin-top: 0;}
+</style>
+ 
+<body>
+	<div class="header">
+		<div>Simple information</div>
+	</div>
+	<div class="bold">Simple html information</span>
+	</div>
+	<div>Using vb script + html</div>
+	<div class="note info">
+		<div class="title">Edit html</div>
+	</div>
+	<div class="note">
+		<div class="title">Test computer information</div>
+	</div>
+	</div>
+	<center>
+		<textarea name="ScriptArea" rows="12" cols="80"></textarea><p>
+    <input id="runbutton"  type="button" value="Check" onClick="Information">
+    </center>
+</body>
